@@ -6,5 +6,9 @@ locations that fall within the given radius, latitude and longitude.
 ## Project Setup
 
 ```sh
+composer install
+```
+
+```sh
 php artisan migrate --seed
 ```
