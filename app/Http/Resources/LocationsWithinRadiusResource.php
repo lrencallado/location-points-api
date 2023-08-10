@@ -14,12 +14,6 @@ class LocationsWithinRadiusResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // $result = [
-        //     'name' => $this->name,
-        //     'latitude' => floatval($this->latitude),
-        //     'longitude' => floatval($this->longitude),
-        // ];
-
         return parent::toArray($request);
     }
 }
