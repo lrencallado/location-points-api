@@ -15,8 +15,10 @@ class LocationPointsTest extends TestCase
         $response->assertStatus(422)->assertJsonValidationErrors(['latitude', 'longitude']);
     }
 
-    public function test_location_within_radius_only(): void
+    public function test_get_location_if_no_error(): void
     {
+        $response = $this->json('GET', 'api/v1/location-points?latitude=51.851917418378193&longitude=-0.6779045891647182&radius=70000');
 
+        $response->assertOk();
     }
 }
