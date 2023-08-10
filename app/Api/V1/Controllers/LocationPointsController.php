@@ -33,7 +33,7 @@ class LocationPointsController extends Controller
         // Loop through the list of coordinations and check if each coordinate
         // is within the specified radius from the center point.
         foreach ($location->all() as $location) {
-            $distance = $locationPointsService->haversineDistance($latitude, $longitude, floatval($location->latitude), floatval($location->longitude));
+            $distance = $locationPointsService->haversineDistance($latitude, $longitude, $location->latitude, $location->longitude);
 
             if ($distance <= $radius) {
                 $locationWithinRadius[] = $location;
