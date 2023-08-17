@@ -24,18 +24,14 @@ class LocationPointsController extends Controller
      */
     public function getLocations(GetLocationsRequest $request, LocationPointsService $locationPointsService, Location $location): ResourceCollection
     {
-        $latitude = floatval($request->latitude);
-        $longitude = floatval($request->longitude);
-        $radius = $request->radius;
-
         $locationWithinRadius = [];
 
         // Loop through the list of coordinations and check if each coordinate
         // is within the specified radius from the center point.
         foreach ($location->all() as $location) {
-            $distance = $locationPointsService->haversineDistance($latitude, $longitude, $location->latitude, $location->longitude);
+            $distance = $locationPointsService->haversineDistance($request->latitude, $request->longitude, $location->latitude, $location->longitude);
 
-            if ($distance <= $radius) {
+            if ($distance <= $request->radius) {
                 $locationWithinRadius[] = $location;
             }
         }
