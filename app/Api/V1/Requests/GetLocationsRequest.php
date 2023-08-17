@@ -24,7 +24,12 @@ class GetLocationsRequest extends FormRequest
         return [
             'latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
             'longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
-            'radius' => ['required'],
+            'radius' => ['required', 'numeric'],
         ];
+    }
+
+    protected function passedValidation(): void
+    {
+        $this->replace(['latitude' => floatval($this->latitude), 'longitude' => floatval($this->longitude), 'radius' => (int) $this->radius]);
     }
 }
